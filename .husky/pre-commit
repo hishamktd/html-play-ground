@@ -2,5 +2,3 @@
 
 prettier $(git diff --cached --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
 git update-index --again
-
-# pnpm release
