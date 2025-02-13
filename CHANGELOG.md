@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.0.4](///compare/v0.0.3...v0.0.4) (2025-02-13)
 
+feat: add move ball game with arrow key controls
+
 ### [0.0.3](///compare/v0.0.2...v0.0.3) (2025-02-13)
 
 ### [0.0.2](///compare/v0.0.49...v0.0.2) (2025-02-13)
