@@ -3,7 +3,7 @@ const container = document.querySelector(".container");
 
 let ballX = container.clientWidth / 2 - ball.clientWidth / 2;
 let ballY = container.clientHeight / 2 - ball.clientHeight / 2;
-const step = 10; // Movement speed
+const step = 10;
 
 document.addEventListener("keydown", (event) => {
   const containerRect = container.getBoundingClientRect();
