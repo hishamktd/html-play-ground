@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](///compare/v0.0.5...v0.0.6) (2025-02-13)
+
+### Features
+
+- update ball movement area dimensions and clean up code 2a4829e
+
 ### [0.0.5](///compare/v0.0.4...v0.0.5) (2025-02-13)
 
 ### Features
