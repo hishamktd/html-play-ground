@@ -10,11 +10,10 @@ body {
   align-items: center;
   height: 100vh;
   background-color: #f4f4f4;
-  overflow: hidden;
 }
 
 .container {
-  width: 1450px;
+  width: 1250px;
   height: 600px;
   border: 5px solid black;
   position: relative;
@@ -42,5 +41,18 @@ body {
 }
 
 .score {
-  display: none;
+  display: flex;
+  height: 600px;
+  flex-direction: column;
+  padding: 10px;
+  background-color: #f4f4f4;
+  font-family: sans-serif;
+  font-weight: normal;
+  font-size: 1.5rem;
+  gap: 5px;
+}
+
+.score span {
+  margin-bottom: 10px;
+  font-weight: bold;
 }
