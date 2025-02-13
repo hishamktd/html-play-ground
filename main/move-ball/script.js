@@ -4,12 +4,16 @@ const container = document.querySelector(".container");
 const scoreDisplay = document.getElementById("score");
 const highScoreDisplay = document.getElementById("high-score");
 
+let moveIntervalTime = 100;
+let moveInterval = setInterval(moveBall, moveIntervalTime);
 let ballX = container.clientWidth / 2 - ball.clientWidth / 2;
 let ballY = container.clientHeight / 2 - ball.clientHeight / 2;
-const step = 10;
+const step = 4;
 let score = 0;
 let speed = 10000;
 let direction = { x: 0, y: 0 };
+let dotInterval = setInterval(moveDot, speed);
+let isMoving = false;
 
 let highScore = localStorage.getItem("highScore")
   ? parseInt(localStorage.getItem("highScore"))
@@ -90,5 +94,22 @@ document.addEventListener("keydown", (event) => {
 });
 
 setInterval(moveBall, 100);
-let dotInterval = setInterval(moveDot, speed);
 moveDot();
+
+document.addEventListener("keydown", () => {
+  isMoving = true;
+  ball.style.filter = "blur(2px)";
+});
+
+document.addEventListener("keyup", () => {
+  isMoving = false;
+  setTimeout(() => {
+    if (!isMoving) ball.style.filter = "blur(0px)";
+  }, 100);
+});
+
+function updateSpeed() {
+  moveIntervalTime = Math.max(20, moveIntervalTime - 5);
+  clearInterval(moveInterval);
+  moveInterval = setInterval(moveBall, moveIntervalTime);
+}
