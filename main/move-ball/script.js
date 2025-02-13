@@ -8,8 +8,9 @@ let ballX = container.clientWidth / 2 - ball.clientWidth / 2;
 let ballY = container.clientHeight / 2 - ball.clientHeight / 2;
 const step = 10;
 let score = 0;
-let speed = 10000;
+let speed = 3000; // Initial speed for dot movement
 
+// Load high score from localStorage
 let highScore = localStorage.getItem("highScore")
   ? parseInt(localStorage.getItem("highScore"))
   : 0;
@@ -37,36 +38,43 @@ function checkCollision() {
   ) {
     score++;
     scoreDisplay.textContent = score;
-    speed = Math.max(500, speed - 200);
+    speed = Math.max(500, speed - 200); // Increase difficulty
 
+    // Update high score
     if (score > highScore) {
       highScore = score;
       highScoreDisplay.textContent = highScore;
       localStorage.setItem("highScore", highScore);
     }
 
-    moveDot();
+    moveDot(); // Move dot after collision
     clearInterval(dotInterval);
     dotInterval = setInterval(moveDot, speed);
   }
 }
 
 document.addEventListener("keydown", (event) => {
-  const containerRect = container.getBoundingClientRect();
-  const ballRect = ball.getBoundingClientRect();
+  const containerWidth = container.clientWidth;
+  const containerHeight = container.clientHeight;
+  const ballWidth = ball.clientWidth;
+  const ballHeight = ball.clientHeight;
 
   switch (event.key) {
     case "ArrowUp":
-      if (ballRect.top - 9.7 > containerRect.top) ballY -= step;
+      ballY -= step;
+      if (ballY < -ballHeight) ballY = containerHeight;
       break;
     case "ArrowDown":
-      if (ballRect.bottom + 9.7 < containerRect.bottom) ballY += step;
+      ballY += step;
+      if (ballY > containerHeight) ballY = -ballHeight;
       break;
     case "ArrowLeft":
-      if (ballRect.left - 9.7 > containerRect.left) ballX -= step;
+      ballX -= step;
+      if (ballX < -ballWidth) ballX = containerWidth;
       break;
     case "ArrowRight":
-      if (ballRect.right + 9.7 < containerRect.right) ballX += step;
+      ballX += step;
+      if (ballX > containerWidth) ballX = -ballWidth;
       break;
   }
 
