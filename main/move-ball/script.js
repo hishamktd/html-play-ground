@@ -8,9 +8,9 @@ let ballX = container.clientWidth / 2 - ball.clientWidth / 2;
 let ballY = container.clientHeight / 2 - ball.clientHeight / 2;
 const step = 10;
 let score = 0;
-let speed = 3000; // Initial speed for dot movement
+let speed = 10000;
+let direction = { x: 0, y: 0 };
 
-// Load high score from localStorage
 let highScore = localStorage.getItem("highScore")
   ? parseInt(localStorage.getItem("highScore"))
   : 0;
@@ -38,51 +38,57 @@ function checkCollision() {
   ) {
     score++;
     scoreDisplay.textContent = score;
-    speed = Math.max(500, speed - 200); // Increase difficulty
+    speed = Math.max(500, speed - 200);
 
-    // Update high score
     if (score > highScore) {
       highScore = score;
       highScoreDisplay.textContent = highScore;
       localStorage.setItem("highScore", highScore);
     }
 
-    moveDot(); // Move dot after collision
+    moveDot();
     clearInterval(dotInterval);
     dotInterval = setInterval(moveDot, speed);
   }
 }
 
-document.addEventListener("keydown", (event) => {
+function moveBall() {
   const containerWidth = container.clientWidth;
   const containerHeight = container.clientHeight;
   const ballWidth = ball.clientWidth;
   const ballHeight = ball.clientHeight;
 
-  switch (event.key) {
-    case "ArrowUp":
-      ballY -= step;
-      if (ballY < -ballHeight) ballY = containerHeight;
-      break;
-    case "ArrowDown":
-      ballY += step;
-      if (ballY > containerHeight) ballY = -ballHeight;
-      break;
-    case "ArrowLeft":
-      ballX -= step;
-      if (ballX < -ballWidth) ballX = containerWidth;
-      break;
-    case "ArrowRight":
-      ballX += step;
-      if (ballX > containerWidth) ballX = -ballWidth;
-      break;
-  }
+  ballX += direction.x * step;
+  ballY += direction.y * step;
+
+  if (ballX < -ballWidth) ballX = containerWidth;
+  if (ballX > containerWidth) ballX = -ballWidth;
+  if (ballY < -ballHeight) ballY = containerHeight;
+  if (ballY > containerHeight) ballY = -ballHeight;
 
   ball.style.left = `${ballX}px`;
   ball.style.top = `${ballY}px`;
 
   checkCollision();
+}
+
+document.addEventListener("keydown", (event) => {
+  switch (event.key) {
+    case "ArrowUp":
+      direction = { x: 0, y: -1 };
+      break;
+    case "ArrowDown":
+      direction = { x: 0, y: 1 };
+      break;
+    case "ArrowLeft":
+      direction = { x: -1, y: 0 };
+      break;
+    case "ArrowRight":
+      direction = { x: 1, y: 0 };
+      break;
+  }
 });
 
+setInterval(moveBall, 100);
 let dotInterval = setInterval(moveDot, speed);
 moveDot();
