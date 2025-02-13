@@ -3,16 +3,18 @@ const dot = document.getElementById("dot");
 const container = document.querySelector(".container");
 const scoreDisplay = document.getElementById("score");
 const highScoreDisplay = document.getElementById("high-score");
+const playPauseButton = document.getElementById("play-pause-button");
+const resetButton = document.getElementById("reset-button");
 
 let moveIntervalTime = 100;
-let moveInterval = setInterval(moveBall, moveIntervalTime);
+let moveInterval;
 let ballX = container.clientWidth / 2 - ball.clientWidth / 2;
 let ballY = container.clientHeight / 2 - ball.clientHeight / 2;
-const step = 4;
+const step = 10;
 let score = 0;
 let speed = 10000;
 let direction = { x: 0, y: 0 };
-let dotInterval = setInterval(moveDot, speed);
+let dotInterval;
 let isMoving = false;
 
 let highScore = localStorage.getItem("highScore")
@@ -53,6 +55,8 @@ function checkCollision() {
     moveDot();
     clearInterval(dotInterval);
     dotInterval = setInterval(moveDot, speed);
+
+    updateSpeed();
   }
 }
 
@@ -90,22 +94,48 @@ document.addEventListener("keydown", (event) => {
     case "ArrowRight":
       direction = { x: 1, y: 0 };
       break;
+    case " ":
+      onClickPlayPauseButton();
+      break;
   }
 });
 
-setInterval(moveBall, 100);
-moveDot();
+const onClickPlayPauseButton = () => {
+  if (!isMoving) {
+    isMoving = true;
+    ball.style.filter = "blur(1.4px)";
+    moveInterval = setInterval(moveBall, moveIntervalTime);
+    playPauseButton.innerHTML = `<img src="icons/pause.svg" alt="Pause" />`;
+    direction = { x: 1, y: 0 };
+  } else {
+    isMoving = false;
+    ball.style.filter = "blur(0px)";
+    clearInterval(moveInterval);
+    playPauseButton.innerHTML = `<img src="icons/play.svg" alt="Play" />`;
+  }
+};
 
-document.addEventListener("keydown", () => {
-  isMoving = true;
-  ball.style.filter = "blur(2px)";
-});
+playPauseButton.addEventListener("click", onClickPlayPauseButton);
 
-document.addEventListener("keyup", () => {
+resetButton.addEventListener("click", () => {
   isMoving = false;
-  setTimeout(() => {
-    if (!isMoving) ball.style.filter = "blur(0px)";
-  }, 100);
+  clearInterval(moveInterval);
+  clearInterval(dotInterval);
+
+  score = 0;
+  speed = 10000;
+  moveIntervalTime = 100;
+  direction = { x: 0, y: 0 };
+
+  scoreDisplay.textContent = score;
+  ballX = container.clientWidth / 2 - ball.clientWidth / 2;
+  ballY = container.clientHeight / 2 - ball.clientHeight / 2;
+  ball.style.left = `${ballX}px`;
+  ball.style.top = `${ballY}px`;
+  ball.style.filter = "blur(0px)";
+
+  moveDot();
+  dotInterval = setInterval(moveDot, speed);
 });
 
 function updateSpeed() {
@@ -113,3 +143,6 @@ function updateSpeed() {
   clearInterval(moveInterval);
   moveInterval = setInterval(moveBall, moveIntervalTime);
 }
+
+moveDot();
+dotInterval = setInterval(moveDot, speed);

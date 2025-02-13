@@ -7,13 +7,25 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="ball" id="ball"></div>
-      <div class="dot" id="dot"></div>
+    <div class="game-controls">
+      <div class="game-controls-buttons">
+        <button id="play-pause-button">
+          <img src="icons/play.svg" alt="Play" />
+        </button>
+      </div>
+      <div class="game-controls-reset">
+        <button id="reset-button">Reset</button>
+      </div>
     </div>
-    <div class="score">
-      <p>Score: <span id="score">0</span></p>
-      <p>High Score: <span id="high-score">0</span></p>
+    <div class="game-container">
+      <div class="container">
+        <div class="ball" id="ball"></div>
+        <div class="dot" id="dot"></div>
+      </div>
+      <div class="score">
+        <p>Score: <span id="score">0</span></p>
+        <p>High Score: <span id="high-score">0</span></p>
+      </div>
     </div>
     <script src="script.js"></script>
   </body>
