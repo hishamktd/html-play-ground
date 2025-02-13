@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.12](https://git.personal.com/hishamktd/html-play-ground/compare/v0.0.11...v0.0.12) (2025-02-13)
+
+### Features
+
+- enhance ball movement with dynamic speed and visual feedback ([ab74edd](https://git.personal.com/hishamktd/html-play-ground/commit/ab74edd1f216b80686c6c56874feacd079da9ffc))
+
 ### [0.0.11](///compare/v0.0.10...v0.0.11) (2025-02-13)
 
 ### [0.0.10](///compare/v0.0.9...v0.0.10) (2025-02-13)
