@@ -32,3 +32,15 @@ body {
   transform: translate(-50%, -50%);
   transition: position 0.1s ease-in-out;
 }
+
+.dot {
+  width: 15px;
+  height: 15px;
+  background-color: blue;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.score {
+  display: none;
+}
