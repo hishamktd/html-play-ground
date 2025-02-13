@@ -1,6 +1,6 @@
 {
   "name": "html-play-ground",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
     "release": "standard-version",
     "prepare": "husky"

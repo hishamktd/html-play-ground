@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](///compare/v0.0.7...v0.0.8) (2025-02-13)
+
+### Features
+
+- add scoring system and dot movement for ball game 3dfaa2b
+
 ### [0.0.7](///compare/v0.0.6...v0.0.7) (2025-02-13)
 
 ### Features
