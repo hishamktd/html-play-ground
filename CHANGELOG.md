@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.13](https://git.personal.com/hishamktd/html-play-ground/compare/v0.0.12...v0.0.13) (2025-02-13)
+
+### Features
+
+- add game controls with play/pause and reset functionality ([d1c6f2b](https://git.personal.com/hishamktd/html-play-ground/commit/d1c6f2bde7a42aa498a024b96eb50b6d631b6978))
+
 ### [0.0.12](https://git.personal.com/hishamktd/html-play-ground/compare/v0.0.11...v0.0.12) (2025-02-13)
 
 ### Features
